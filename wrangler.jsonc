@@ -3,5 +3,13 @@
   "name": "thermassure-cloud-bridge",
   "main": "src/index.py",
   "compatibility_date": "2026-10-07",
-  "compatibility_flags": ["python_workers"]
+  "compatibility_flags": [
+    "python_workers"
+  ],
+  "hyperdrive": [
+    {
+      "binding": "HYPERDRIVE",
+      "id": "78a5539659c043d9b925e10141f14d80"
+    }
+  ]
 }
