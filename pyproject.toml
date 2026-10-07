@@ -1,0 +1,6 @@
+[project]
+name = "thermassure-cloud-bridge"
+version = "0.1.0"
+dependencies = [
+    "asyncpg"
+]
