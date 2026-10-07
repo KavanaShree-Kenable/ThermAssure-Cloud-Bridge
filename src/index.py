@@ -8,8 +8,8 @@ class ThermAssureMQTT(DurableObject):
     def __init__(self, ctx, env):
         super().__init__(ctx, env)
 
-    async def ping(self):
-        return "ThermAssureMQTT Durable Object is working"
+    async def fetch(self, request):
+        return Response("ThermAssureMQTT Durable Object is working")
 
 
 class Default(WorkerEntrypoint):
@@ -18,23 +18,20 @@ class Default(WorkerEntrypoint):
 
         url = urlparse(request.url)
 
-        # Test Durable Object
         if url.path == "/do-test":
 
-            stub = self.env.THERMassureMQTT.getByName("main")
+            stub = self.env.THERMASSURE_MQTT.getByName("main")
 
-            result = await stub.ping()
+            response = await stub.fetch(
+                "https://thermassure-do/do-test"
+            )
 
-            return Response.json({
-                "success": True,
-                "message": result
-            })
+            return response
 
-        # Existing Hyperdrive → Tiger Cloud test
+        # Existing Tiger Cloud test
         hd = self.env.HYPERDRIVE
 
         try:
-
             connection = await asyncpg.connect(
                 host=hd.host,
                 port=int(hd.port),
