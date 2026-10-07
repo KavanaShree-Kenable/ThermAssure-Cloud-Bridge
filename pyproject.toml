@@ -1,6 +1,14 @@
 [project]
 name = "thermassure-cloud-bridge"
 version = "0.1.0"
+requires-python = ">=3.13"
+
 dependencies = [
     "asyncpg"
+]
+
+[dependency-groups]
+dev = [
+    "workers-py>=1.9",
+    "workers-runtime-sdk"
 ]
